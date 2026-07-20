@@ -22,23 +22,24 @@
   <body>
     <header><div><h1>Privacy Policy</h1><p>Better Mitchell Connect</p></div></header>
     <main>
-      <p class="notice"><strong>Effective date:</strong> July 19, 2026. Selecting a PDF sends extracted text to OpenAI for structured field extraction. PDF bytes are not transmitted, and the publisher does not receive the text.</p>
+      <p class="notice"><strong>Effective date:</strong> July 20, 2026. Selecting a PDF sends extracted text through the access-controlled Better Mitchell Connect service to OpenAI for structured field extraction. PDF bytes are not transmitted.</p>
       <h2>Information handled</h2>
-      <p>The extension handles PDFs selected explicitly by the user, the visible Mitchell Connect Create New Job form, and rendered Mitchell Estimating rows used for read-only comparison. A claim PDF may contain names, postal addresses, email addresses, phone numbers, claim and policy identifiers, vehicle identifiers, adjuster information, collision details, parts, labor, and pricing.</p>
+      <p>The extension handles PDFs selected explicitly by the user, the visible Mitchell Connect Create New Job form, and rendered Mitchell Estimating rows and controls used for reviewed draft staging. A claim PDF may contain names, postal addresses, email addresses, phone numbers, claim and policy identifiers, vehicle identifiers, adjuster information, collision details, parts, labor, and pricing.</p>
       <h2>How information is used</h2>
-      <p>Information is used only to extract structured claim and estimate fields, fill the currently visible Mitchell Contact, Vehicle, or Insurance fields, and compare parsed estimate rows read-only. The beta does not add, commit, or finalize estimate lines.</p>
+      <p>Information is used only to extract structured claim and estimate fields, fill the currently visible Mitchell Contact, Vehicle, or Insurance fields, and review and stage uncommitted estimate rows after an explicit user action. The beta never activates Mitchell Commit or Mark as Final.</p>
       <h2>Storage, transmission, and retention</h2>
       <ul>
         <li>PDF bytes remain in memory in the active browser tab and are not sent to OpenAI.</li>
-        <li>Selecting a PDF sends extracted text through a user-operated local service to OpenAI with application storage disabled for the request.</li>
+        <li>Selecting a PDF sends extracted text through the publisher-operated Better Mitchell Connect service in Google Cloud Run to OpenAI with application storage disabled for the request.</li>
         <li>OpenAI states that API data is not used for training unless the API organization opts in.</li>
-        <li>OpenAI processing remains subject to the user's OpenAI account settings, agreement, and applicable data policies.</li>
-        <li>The extension has no publisher-operated backend, analytics, advertising, or remote OCR.</li>
-        <li>The extension uses memory-backed <code>chrome.storage.session</code> for the current tab and does not use persistent local or sync storage.</li>
+        <li>OpenAI processing remains subject to the publisher's OpenAI project settings, agreement, and applicable data policies.</li>
+        <li>The publisher service transiently processes text and parsed results but does not intentionally log request bodies or persist claim content. Infrastructure logs may retain request metadata such as timestamp, status, and latency.</li>
+        <li>The extension has no analytics, advertising, or remote OCR.</li>
+        <li>The extension uses memory-backed <code>chrome.storage.session</code> for claim drafts. <code>chrome.storage.local</code> stores only the revocable beta access code until the user removes it or uninstalls the extension.</li>
         <li>Closing the tab, restarting the browser, or reloading the extension clears the session draft.</li>
       </ul>
       <h2>Sharing and sale</h2>
-      <p>The publisher does not sell, receive, or permit human review of extension user data. Transfer to OpenAI occurs only to provide field extraction after the user selects a PDF. Data is not used for advertising, profiling, creditworthiness, or lending.</p>
+      <p>The publisher does not sell or permit human review of extension user data. The publisher-operated service and OpenAI process extracted text only to provide field extraction after the user selects a PDF. Data is not used for advertising, profiling, creditworthiness, or lending.</p>
       <h2>Chrome Web Store Limited Use</h2>
       <p>Use of information received from Chrome APIs and the Mitchell Connect page adheres to the Chrome Web Store User Data Policy, including the Limited Use requirements. Data is used only to provide the user-facing PDF review and form-filling feature.</p>
       <h2>User control</h2>
