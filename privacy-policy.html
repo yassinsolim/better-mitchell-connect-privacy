@@ -4,29 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Better Mitchell Connect - Privacy Policy</title>
-    <style>
-      :root { color: #302e2c; background: #f4f6f6; font-family: Georgia, serif; }
-      * { box-sizing: border-box; letter-spacing: 0; }
-      body { margin: 0; }
-      header { padding: 30px 24px; background: #174b57; color: white; }
-      header div, main { width: min(760px, calc(100% - 40px)); margin: 0 auto; }
-      h1 { margin: 0; font-size: 30px; }
-      header p { margin: 8px 0 0; color: #d8edf1; }
-      main { padding: 38px 0 64px; }
-      h2 { margin-top: 32px; color: #06677d; font-size: 20px; }
-      p, li { font-size: 16px; line-height: 1.65; }
-      .notice { padding: 14px 16px; border-left: 4px solid #f4c44e; background: white; }
-      code { font-family: ui-monospace, monospace; }
-    </style>
+    <link rel="stylesheet" href="privacy-policy.css" />
   </head>
   <body>
     <header><div><h1>Privacy Policy</h1><p>Better Mitchell Connect</p></div></header>
     <main>
-      <p class="notice"><strong>Effective date:</strong> July 20, 2026. Selecting a PDF sends extracted text through the access-controlled Better Mitchell Connect service to OpenAI for structured field extraction. PDF bytes are not transmitted.</p>
+      <p class="notice"><strong>Effective date:</strong> July 23, 2026. Selecting a PDF sends extracted text through the access-controlled Better Mitchell Connect service to OpenAI for structured field extraction. PDF bytes are not transmitted. An intake-enabled build also connects authorized staff to the Cosmos customer-intake queue described below.</p>
       <h2>Information handled</h2>
-      <p>The extension handles PDFs selected explicitly by the user, the visible Mitchell Connect Create New Job form, and rendered Mitchell Estimating rows and controls used for reviewed draft staging. A claim PDF may contain names, postal addresses, email addresses, phone numbers, claim and policy identifiers, vehicle identifiers, adjuster information, collision details, parts, labor, and pricing.</p>
+      <p>The extension handles PDFs selected explicitly by the user, the visible Mitchell Connect Create New Job form, and rendered Mitchell Estimating rows and controls used for reviewed draft staging. A claim PDF may contain names, postal addresses, email addresses, phone numbers, claim and policy identifiers, vehicle identifiers, adjuster information, collision details, parts, labor, and pricing. An intake-enabled build also handles structured customer, contact, vehicle, payment, police-sticker, and service-request information submitted through the Cosmos tablet form.</p>
       <h2>How information is used</h2>
-      <p>Information is used only to extract structured claim and estimate fields, fill the currently visible Mitchell Contact, Vehicle, or Insurance fields, and review and stage uncommitted estimate rows after an explicit user action. The beta never activates Mitchell Commit or Mark as Final.</p>
+      <p>Information is used only to extract structured claim and estimate fields, operate the authorized customer-intake queue, fill the currently visible Mitchell Contact, Vehicle, or Insurance fields, and review and stage uncommitted estimate rows after an explicit user action. The beta never activates Mitchell Commit or Mark as Final.</p>
       <h2>Storage, transmission, and retention</h2>
       <ul>
         <li>PDF bytes remain in memory in the active browser tab and are not sent to OpenAI.</li>
@@ -34,16 +21,20 @@
         <li>OpenAI states that API data is not used for training unless the API organization opts in.</li>
         <li>OpenAI processing remains subject to the publisher's OpenAI project settings, agreement, and applicable data policies.</li>
         <li>The publisher service transiently processes text and parsed results but does not intentionally log request bodies or persist claim content. Infrastructure logs may retain request metadata such as timestamp, status, and latency.</li>
+        <li>The customer-intake service stores submitted form records and queue status transitions in a dedicated Google Cloud Firestore database in Montréal, Canada. Printable intake PDFs are generated on demand from those records.</li>
+        <li>Intake records become eligible for deletion 30 days after submission. Completing an intake resets eligibility to 30 days after completion. Firestore states that TTL deletion is typically performed within 24 hours after eligibility, but does not guarantee a deletion deadline.</li>
+        <li>The customer tablet receives create-only access. Separately authorized staff can list, print, claim, release, and complete queue records.</li>
         <li>The extension has no analytics, advertising, or remote OCR.</li>
-        <li>The extension uses memory-backed <code>chrome.storage.session</code> for claim drafts. <code>chrome.storage.local</code> stores only the revocable beta access code until the user removes it or uninstalls the extension.</li>
+        <li>The extension uses memory-backed <code>chrome.storage.session</code> for claim drafts. <code>chrome.storage.local</code> stores revocable service access codes and, when intake is enabled, a staff/workstation label. Queue records are not persistently copied into browser storage.</li>
+        <li>Intake notifications contain only an aggregate queue count, never customer, vehicle, claim, or contact details.</li>
         <li>Closing the tab, restarting the browser, or reloading the extension clears the session draft.</li>
       </ul>
       <h2>Sharing and sale</h2>
-      <p>The publisher does not sell or permit human review of extension user data. The publisher-operated service and OpenAI process extracted text only to provide field extraction after the user selects a PDF. Data is not used for advertising, profiling, creditworthiness, or lending.</p>
+      <p>The publisher does not sell or permit developer human review of extension user data. Google Cloud processes the managed intake records and service traffic, and the publisher-operated AI service and OpenAI process extracted PDF text only to provide field extraction after the user selects a PDF. Structured tablet submissions are not sent to OpenAI for parsing. Data is not used for advertising, profiling, creditworthiness, or lending.</p>
       <h2>Chrome Web Store Limited Use</h2>
-      <p>Use of information received from Chrome APIs and the Mitchell Connect page adheres to the Chrome Web Store User Data Policy, including the Limited Use requirements. Data is used only to provide the user-facing PDF review and form-filling feature.</p>
+      <p>Use of information received from Chrome APIs and the Mitchell Connect page adheres to the Chrome Web Store User Data Policy, including the Limited Use requirements. Data is used only to provide the user-facing PDF review, customer-intake queue, and form-filling features.</p>
       <h2>User control</h2>
-      <p>Users choose whether to select a PDF, may edit every detected value before filling, and retain control over Mitchell's Save &amp; Next action. Uninstalling the extension removes its access.</p>
+      <p>Users choose whether to select a PDF, may edit every detected value before filling, and retain control over Mitchell's Save &amp; Next action. Authorized staff explicitly complete intake records, and the managed service applies the retention schedule above. Uninstalling the extension removes its browser access but does not accelerate an already submitted intake record's retention deadline.</p>
       <h2>Contact</h2>
       <p>Publisher: <code>yassinsolim</code><br />Support: <a href="mailto:solimanyassin@gmail.com">solimanyassin@gmail.com</a></p>
     </main>
